@@ -1,8 +1,7 @@
 name: Tag post-release
 on:
-  # Runs if a push is made to develop from a release branch
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
     types: [ closed ] 
 
 jobs:
@@ -10,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version-tag: ${{ steps.version-tag.outputs.TAG }}
+    # Runs if a push is made to develop from a release branch
     if: ${{ github.event.pull_request.merge && startsWith(github.event.pull_request.head.ref, 'release') }} 
 
     steps:
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2 
 
-      - name: Tag develop branch
+      - name: Tag main branch
         run: git tag "v${{ needs.get-tag.outputs.version-tag }}" 
 
       - name: Push tag to origin
