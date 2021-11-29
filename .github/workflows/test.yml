@@ -6,6 +6,7 @@ on:
 
 jobs:
   echo-event-results:
+    runs-on: ubuntu-latest
     steps:
       - name: Echo event results
         run: echo "${{ github.event.pull_request.merge }} ${{ github.event.pull_request.head.ref }}"
