@@ -1,0 +1,11 @@
+name: test pr event results
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+
+jobs:
+  echo-event-results:
+    steps:
+      - name: Echo event results
+        run: echo "${{ github.event.pull_request.merge }} ${{ github.event.pull_request.head.ref }}"
