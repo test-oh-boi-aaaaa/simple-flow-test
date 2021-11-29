@@ -20,7 +20,7 @@ jobs:
         uses: actions-ecosystem/action-regex-match@v2
         id: tag-regex
         with:
-          text: ${{ github.event.head_commit.message }}
+          text: ${{ github.event.pull_request.head.ref }}
           regex: '(release|bugfix)\/(\d\.\d(\.\d)?)' 
 
       - name: Check if tag exists
