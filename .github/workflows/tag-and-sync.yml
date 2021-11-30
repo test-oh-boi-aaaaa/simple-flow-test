@@ -16,6 +16,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
+      - name: Print a few values
+        run: echo ${{ github.event.pull_request.head.ref }} ${{ startsWith(github.event.pull_request.head.ref, 'release') }} ${{ github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'release') }}
+
       - name: Check if merged pull request contained a tag
         uses: actions-ecosystem/action-regex-match@v2
         id: tag-regex
